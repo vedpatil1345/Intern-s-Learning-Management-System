@@ -196,7 +196,23 @@ const SignUpPage = () => {
                 placeholder="Confirm your password"
               />
             </div>
-
+            <div className="flex items-center">
+              <input
+                id="acceptTerms"
+                name="acceptTerms"
+                type="checkbox"
+                required
+                checked={acceptTerms}
+                onChange={(e) => setAcceptTerms(e.target.checked)}
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <label htmlFor="acceptTerms" className="ml-2 block text-sm text-gray-700">
+                I accept the{' '}
+                <Link href="/terms" className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+                  terms and conditions
+                </Link>
+              </label>
+            </div>
             <div>
               <Button
                 type="submit"
