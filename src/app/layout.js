@@ -15,12 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <ProtectedRoute user={null}>
         <body className="font-sans antialiased max-w-screen overflow-x-hidden bg-slate-100">
+      <ProtectedRoute>
           <Navbar user={null} />
           {children}
-        </body>
       </ProtectedRoute>
+        </body>
     </html>
   );
 }

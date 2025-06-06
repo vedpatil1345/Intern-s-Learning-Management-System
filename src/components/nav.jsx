@@ -7,9 +7,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import UserMenu from './user';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react'; // Assuming you're using lucide-react for icons
+import { Menu, X } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth'; // Assuming you're using lucide-react for icons
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
+  const { user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,27 +51,26 @@ const Navbar = ({ user }) => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => {
-  const isActive = pathname === item.href;
-  if (!user && item.href === '/dashboard') {
-    return null;
-  }
-  return (
-    <div className="relative group" key={item.href}>
-      <Link
-        href={item.href}
-        className={`px-3 py-2 text-sm font-medium ${
-          isActive ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
-        }`}
-        aria-current={isActive ? 'page' : undefined}
-      >
-        {item.name}
-      </Link>
-      <span
-        className={`absolute -bottom-1 left-0 h-1 bg-blue-600 transition-all duration-300 w-0 group-hover:w-full`}
-      ></span>
-    </div>
-  );
-})}
+              const isActive = pathname === item.href;
+              if (!user && item.href === '/dashboard') {
+                return null;
+              }
+              return (
+                <div className="relative group" key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`px-3 py-2 text-sm font-medium ${isActive ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'
+                      }`}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Link>
+                  <span
+                    className={`absolute -bottom-1 left-0 h-1 bg-blue-600 transition-all duration-300 w-0 group-hover:w-full`}
+                  ></span>
+                </div>
+              );
+            })}
             {user ? (
               <UserMenu user={user} />
             ) : (
@@ -116,11 +117,10 @@ const Navbar = ({ user }) => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-2 text-base font-medium ${
-                    isActive
+                  className={`block px-3 py-2 text-base font-medium ${isActive
                       ? 'text-blue-600 bg-blue-50'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
+                    }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

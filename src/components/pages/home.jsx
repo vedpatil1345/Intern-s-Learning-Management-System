@@ -3,8 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
 
 const HomePage = () => {
+  const { user } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col justify-center items-center px-6 py-16 text-gray-800">
       {/* Hero Section */}
@@ -16,7 +18,14 @@ const HomePage = () => {
           Learn, build, and grow with real-world projects, guided mentorship, and a powerful LMS experience tailored for interns.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-          <Link href="/sign-up">
+          {user ? 
+          <>
+            <Link href="/dashboard">
+            <Button className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+              Get Started
+            </Button>
+          </Link>
+          </>:<><Link href="/sign-up">
             <Button className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
               Get Started
             </Button>
@@ -25,7 +34,7 @@ const HomePage = () => {
             <Button variant="outline" className="px-6 py-3 rounded-lg border-indigo-600 text-indigo-600 hover:bg-indigo-50">
               Login
             </Button>
-          </Link>
+          </Link></>}
         </div>
       </div>
 
