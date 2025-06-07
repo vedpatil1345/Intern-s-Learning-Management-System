@@ -22,7 +22,7 @@ export async function GET(request) {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?redirect_to=${encodeURIComponent(redirectTo)}`,
+        redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?redirect_to=${redirectTo}`,
       },
     });
 
@@ -44,7 +44,7 @@ export async function GET(request) {
   } catch (error) {
     console.error('OAuth error:', error);
     return NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/sign-in?error=${encodeURIComponent('An unexpected error occurred')}`
+      `${process.env.NEXT_PUBLIC_APP_URL}/sign-in?error=${encodeURIComponent('An unexpected error occurred: ' + error?.message)}`
     );
   }
 }

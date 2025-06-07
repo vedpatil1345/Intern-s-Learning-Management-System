@@ -73,25 +73,10 @@ export const useAuth = () => {
   // Sign-Out
   const signOut = async () => {
     try {
-      // Call server-side sign-out API
-      const response = await fetch('/api/auth/sign-out', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.details || result.error || 'Sign-out failed');
-      }
-
-      // Client-side cleanup
       const { error } = await supabaseClient.auth.signOut();
       if (error) throw error;
 
       setUser(null);
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem(`sb-${process.env.NEXT_PUBLIC_SUPABASE_URL.split('.')[0]}-auth-token`);
-      }
     } catch (error) {
       console.error('Sign-out error:', error);
       throw error;

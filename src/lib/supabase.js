@@ -3,10 +3,10 @@ import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 class CookieStorageAdapter {
   constructor(cookieStore) {
     this.cookieStore = cookieStore;
-    this.memoryStorage = new Map();// Debug log
+    this.memoryStorage = new Map();
   }
 
-  getItem(key) { // Debug log
+  getItem(key) {
     if (this.memoryStorage.has(key)) {
       return this.memoryStorage.get(key);
     }
@@ -19,7 +19,7 @@ class CookieStorageAdapter {
     return null;
   }
 
-  setItem(key, value) { // Debug log
+  setItem(key, value) {
     this.memoryStorage.set(key, value);
     if (this.cookieStore) {
       try {
@@ -37,7 +37,7 @@ class CookieStorageAdapter {
     }
   }
 
-  removeItem(key) {// Debug log
+  removeItem(key) {
     this.memoryStorage.delete(key);
     if (this.cookieStore) {
       try {

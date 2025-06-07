@@ -57,7 +57,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { error: 'An unexpected error occurred during login', details: error.message || 'Unknown error' },
+      { error: 'An unexpected error occurred during login', details: error?.message || 'Unknown error' },
       { status: 500 }
     );
   }

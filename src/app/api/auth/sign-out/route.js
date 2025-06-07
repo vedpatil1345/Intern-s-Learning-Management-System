@@ -19,7 +19,7 @@ export async function POST() {
   } catch (error) {
     console.error('Server sign-out error:', error);
     return NextResponse.json(
-      { error: 'Failed to sign out', details: error.message },
+      { error: 'Failed to sign out', details: error?.message },
       { status: 500 }
     );
   }
