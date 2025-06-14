@@ -1,4 +1,5 @@
 
+import Footer from "@/components/footer";
 import "./globals.css";
 import Navbar from "@/components/nav";
 import ProtectedRoute from "@/components/protection";
@@ -17,8 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
         <body className="font-sans antialiased max-w-screen overflow-x-hidden bg-slate-100">
       <ProtectedRoute>
-          <Navbar user={null} />
+          <Navbar />
           {children}
+          <Footer />
       </ProtectedRoute>
         </body>
     </html>

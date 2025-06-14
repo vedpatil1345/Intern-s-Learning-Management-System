@@ -15,6 +15,9 @@ export async function GET(request) {
   const storedState = cookieStore.get('oauth_state')?.value;
   const error = searchParams.get('error');
   const errorDescription = searchParams.get('error_description');
+  const redirectTo = searchParams.get('redirect_to') || '/dashboard';
+  console.log('Redirecting to:', redirectTo);
+  
 
   console.log('Callback params:', { code, state, storedState, error, errorDescription });
 
@@ -100,7 +103,9 @@ export async function GET(request) {
         }
       }
 
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+      const redirectTo = searchParams.get('redirect_to') || '/dashboard';
+      console.log('Redirecting to:', redirectTo);
+      return NextResponse.redirect(new URL(redirectTo, request.url));
     }
 
     return NextResponse.redirect(new URL('/sign-up?error=No user data returned', request.url));
