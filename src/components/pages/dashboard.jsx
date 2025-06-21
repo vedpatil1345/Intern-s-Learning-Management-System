@@ -36,7 +36,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-const ComprehensiveDashboard = () => {
+const Dashboard = () => {
   const { user } = useAuth()
   const { profile, isLoading } = useProfile(user)
   const [activeSection, setActiveSection] = useState("dashboard")
@@ -1282,4 +1282,4 @@ const ComprehensiveDashboard = () => {
   )
 }
 
-export default ComprehensiveDashboard
+export default Dashboard

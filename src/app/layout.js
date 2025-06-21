@@ -7,7 +7,7 @@ import ProtectedRoute from "@/components/protection";
 
 export const metadata = {
   title: "IOTechz",
-  description: "IOTechz - Your IoT Solutions Partner",
+  description: "IOTechz",
   icons: {
     icon: "/favicon.ico",
   },
